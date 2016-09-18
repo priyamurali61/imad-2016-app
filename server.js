@@ -12,13 +12,13 @@ app.get('/book1',function(req,res){
    res.sendFile(path.join(__dirname, 'ui', 'book1.html'));
 });
 app.get('/book2',function(req,res){
-    res.send('book two requested');
+    res.sendFile(path.join(__dirname, 'ui', 'book2.html'));
 });
 app.get('/book3',function(req,res){
     res.send('book three requested');
 });
 app.get('/ui/style.css', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
+  res.sendFile(path.join(__dirname, 'ui', 'book3.html'));
 });
 
 
