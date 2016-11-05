@@ -4,13 +4,56 @@ var path = require('path');
 
 var app = express();
 app.use(morgan('combined'));
-
+var book1={
+    title:'book1|priya',
+    heading:'first-book',
+    content: 
+            <p>
+                This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph  showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial.
+            </p>
+             <p>
+                This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph  showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial.
+            </p>
+             <p>
+                This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph  showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial.
+            </p>`
+};
+function createtemp(data){
+    var title=data.title;
+    var heading=data.heading;
+    var content=data.content;
+    var htmltemp= {
+        <html>
+    <head>
+        <title>{title}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+         <link href="/ui/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+                <div>
+                    <a href="/">home</a>
+                </div>
+                <hr/>
+                <h3>
+                   {heading}
+                </h3>
+                <div>
+                    ${content}
+                </div>
+        </div>
+    </body>
+</html>
+;
+    }
+    return createtemp;
+}
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 app.get('/book1',function(req,res){
-   res.sendFile(path.join(__dirname, 'ui', 'book1.html'));
+  req.send(createtemp(book1));
 });
 app.get('/book2',function(req,res){
     res.sendFile(path.join(__dirname, 'ui', 'book2.html'));
