@@ -72,9 +72,12 @@ app.get('/', function (req, res) {
 });
 app.get('/:books',function(req,res){
     var bookName=req.getparams.bookName;
-    req.send(createtemp(books[bookName));
+    res.send(createtemp(books[bookName]));
 });
-
+var counter=0;
+app.get('/container', function (req, res) {
+    counter=counter+1;
+  res.send(counter.toString());
 
 });
 app.get('/ui/style.css', function (req, res) {
