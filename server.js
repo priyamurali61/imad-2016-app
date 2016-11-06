@@ -4,20 +4,38 @@ var path = require('path');
 
 var app = express();
 app.use(morgan('combined'));
-var book1={
-    title:'book1|priya',
-    heading:'first-book',
-    content: 
-            <p>
-                This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph  showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial.
-            </p>
-             <p>
-                This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph  showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial.
-            </p>
-             <p>
-                This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph  showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial.
-            </p>`
-};
+var books :{  
+        'book1'={
+            title:'book1|priya',
+            heading:'first-book',
+            content: 
+                    <p>
+                        This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph  showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial.
+                    </p>
+                     <p>
+                        This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph  showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial.
+                    </p>
+                     <p>
+                        This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph  showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial. This is a paragraph showing my first trial.
+                    </p>
+        },
+        'book2'={
+            title:'book2|priya',
+            heading:'second-book',
+            content: 
+                    <p>
+                        This is a  second paragraph . 
+                    </p>
+        },
+        'book3'={
+            title:'book3|priya',
+            heading:'third-book',
+            content: 
+                    <p>
+                        This is a paragraph showing my third trial. 
+                    </p>
+        }
+        };
 function createtemp(data){
     var title=data.title;
     var heading=data.heading;
@@ -52,14 +70,12 @@ function createtemp(data){
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-app.get('/book1',function(req,res){
-  req.send(createtemp(book1));
+app.get('/:books',function(req,res){
+    var bookName=req.getparams.bookName;
+    req.send(createtemp(books[bookName));
 });
-app.get('/book2',function(req,res){
-    res.sendFile(path.join(__dirname, 'ui', 'book2.html'));
-});
-app.get('/book3',function(req,res){
-     res.sendFile(path.join(__dirname, 'ui', 'book3.html'));
+
+
 });
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
