@@ -1,5 +1,5 @@
 var button = document.getElementById('counter');
-counter=0;
+
 button.onClick = function(){
     var request = new XMLHttpRequest();
     request.onreadystatechange = function(){
@@ -11,7 +11,8 @@ button.onClick = function(){
             }
     }
     };
-   
+   request.open('GET','http://priyamurali61.imad.hasura-app.io/counter', true);
+   request.send(null);
   
     
 };
