@@ -89,9 +89,24 @@ app.get('/submit-name', function (req,res){
 
 );
 
-app.get('/:books',function(req,res){
-    var bookName=req.getparams.bookName;
-    res.send(createtemp(books[bookName]));
+app.get('/books/:bookName',function(req,res){
+    pool.query("SELECT* FROM book WHERE title =" + req.params.bookName, function(err,results){
+        if(err){
+            res.status(500).send(err.toString());
+        }else{
+            if(result.rows.length === 0){
+                 res.status(404).send(book not found);
+            }else {
+                var bookData=result.rows[0];
+            res.send(createtemp(bookData));
+        }
+    
+        }
+        
+    });
+    
+    
+    
 });
 var counter=0;
 app.get('/container', function (req, res) {
