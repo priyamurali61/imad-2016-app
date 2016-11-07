@@ -90,7 +90,7 @@ app.get('/submit-name', function (req,res){
 );
 
 app.get('/books/:bookName',function(req,res){
-    pool.query("SELECT* FROM book WHERE title =" + req.params.bookName, function(err,results){
+    pool.query("SELECT* FROM book WHERE title = $1" ,[req.params.bookName] , function(err,results){
         if(err){
             res.status(500).send(err.toString());
         }else{
